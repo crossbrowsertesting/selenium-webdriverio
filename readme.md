@@ -6,17 +6,17 @@ If you're already a WebDriverIO user, you can quickly change your current tests 
 
 Before:
 
-'''
+```javascript
 var options = {
     desiredCapabilities: {
         browserName: 'firefox'
     }
 };
-'''
+```
 
 Now:
 
-'''
+```javascript
 var options = {
   desiredCapabilities: {
     name: 'Selenium Test Example',
@@ -34,17 +34,17 @@ var options = {
 }
 
 var client = webdriverio.remote(options);
-'''
+```
 
 As you can see, we're now pointing the test at our hub rather than a local driver instance. 
 
 If you're new to WebDriverIO, we'll walk you through getting setup the first time around. First we need to get WebDriverIO installed. You can do this through NPM:
 
-'npm install webdriverio --save-dev'
+`npm install webdriverio --save-dev`
 
 Before starting any tests, you can configure WebDriverIO to use testing frameworks like [Chai](http://chaijs.com/) or [Mocha](https://mochajs.org/), and you can [read more on that here](http://webdriver.io/guide/getstarted/configuration.html). For our purposes, we'll start by writing our first test with CBT. Copy the following script into your favorite text-editor, and make sure to change the username and authkey values to those associated with your account:
 
-'''
+```javascript
 var webdriverio = require('webdriverio');
 
 user: 'yourusername@yourcompany.com';	// this will be the email address associated with your account.
@@ -76,6 +76,6 @@ client
     })
     .end();
 
-'''
+```
 
 As you can probably make out from our test, we visit Google, and output the title we see. We kept it short and sweet for our purposes, but there is so much more you can do with WebDriverIO. Being built on top of Selenium means the sky is the limit as far as what you can do. If you have any questions or concerns, feel [free to get in touch](mailto:info@crossbrowsertesting.com>)!
