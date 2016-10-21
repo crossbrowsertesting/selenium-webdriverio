@@ -6,7 +6,7 @@ If you're already a WebDriverIO user, you can quickly change your current tests 
 
 Before:
 
-'''javascript
+'''
 var options = {
     desiredCapabilities: {
         browserName: 'firefox'
@@ -16,7 +16,7 @@ var options = {
 
 Now:
 
-'''javascript
+'''
 var options = {
   desiredCapabilities: {
     name: 'Selenium Test Example',
@@ -44,7 +44,7 @@ If you're new to WebDriverIO, we'll walk you through getting setup the first tim
 
 Before starting any tests, you can configure WebDriverIO to use testing frameworks like [Chai](http://chaijs.com/) or [Mocha](https://mochajs.org/), and you can [read more on that here](http://webdriver.io/guide/getstarted/configuration.html). For our purposes, we'll start by writing our first test with CBT. Copy the following script into your favorite text-editor, and make sure to change the username and authkey values to those associated with your account:
 
-'''javascript
+'''
 var webdriverio = require('webdriverio');
 
 user: 'yourusername@yourcompany.com';	// this will be the email address associated with your account.
