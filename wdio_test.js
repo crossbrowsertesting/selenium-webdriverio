@@ -7,9 +7,8 @@ var options = {
   desiredCapabilities: {
     name: 'Selenium Test Example',
     build: '1.0',
-    browser_api_name: "FF45",
-    os_api_name: "Win10",
-    browserName: 'firefox',
+    browserName: "Firefox",         // Gets latest version by default
+    platform: "Windows 10",         // To specify version, add version: "desired version"
     record_video: 'true',
     record_network: 'true'
   },
