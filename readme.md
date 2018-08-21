@@ -113,9 +113,10 @@ To run this test, simply execute the following command:
 
 The process of using WebDriverIO with other frameworks will vary slightly with each framework. Several frameworks are supported with the configuration tool, which can be started up with the command `./node_modules/.bin/wdio config`. This will give a series of prompts and create a configuration file with the information you provide. We'll be manually creating our configuration file for this example.
 
-First, you will need to install Mocha and Chai:
+First, you will need to install Mocha, the WebDriverIO/Mocha adapter, and Chai:
 
 `npm install -g mocha`
+`npm install wdio-mocha-framework --save-dev`
 `npm install chai`
 
 You'll also need to install all the modules from the basic example:
