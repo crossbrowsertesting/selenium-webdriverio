@@ -131,62 +131,55 @@ Next, you'll need to make a configuration file. We're going to manually make one
 Save the following code as "wdio.conf.js" in the root directory of your project:
 
 ```javascript
-var cbt = require('cbt_tunnels');
-
-//You can either manually enter your credentials here or use the commented lines after setting your credentials as environment variables
-var username = 'YOUR_USERNAME_HERE';
-var authkey = 'YOUR_AUTHKEY_HERE';
-//var username = process.env.CBT_USERNAME;
-//var authkey = process.env.CBT_AUTHKEY;
-
 exports.config = {
-    //CBT info to start webdriver with
-    host: 'hub.crossbrowsertesting.com',
+    runner: 'local',
+   
+    hostname: 'hub.crossbrowsertesting.com',
     port: 80,
-    path: '',
-    user: username,
-    key: authkey,
-    //Test file location
+   
+    services: ['crossbrowsertesting'],
+    user: process.env.CBT_USERNAME,
+    key: process.env.CBT_AUTHKEY,
+    cbtTunnel: false, //set to true if a local connection is needed
+    
     specs: [
-        './test/specs/*.js'
+        './test/specs/**/*.js'
     ],
-    exclude: [],
-    maxInstances: 5,
-    capabilities: [
-        {
-            'browserName': 'Chrome',
-            'version': '68x64',
-            'platform': 'Windows 10',
-            'screenResolution': '1366x768'
-        },
-        {
-            'browserName': 'Safari',
-            'version': '11',
-            'platform': 'Mac OSX 10.13',
-            'screenResolution': '1366x768'
-        },
-        {
-            'browserName': 'Safari',
-            'deviceName': 'iPhone 7 Simulator',
-            'platformVersion': '10.0',
-            'platformName': 'iOS',
-            'deviceOrientation': 'portrait'
-        }
+    exclude: [
+        // 'path/to/excluded/files'
     ],
-    sync: true,
-    logLevel: 'silent',
-    coloredLogs: true,
-    deprecationWarnings: true,
+ 
+    maxInstances: 10,
+    
+    capabilities: [{
+        maxInstances: 5,
+        
+        platform: 'Windows',
+        browserName: 'firefox',
+        record_video: 'true'
+    }],
+  
+    logLevel: 'info',
+    
     bail: 0,
-    screenshotPath: './errorShots/',
+    
     baseUrl: 'http://localhost',
+    
     waitforTimeout: 10000,
+
     connectionRetryTimeout: 90000,
+    
     connectionRetryCount: 3,
+
     framework: 'mocha',
+
+    reporters: ['spec'],
+    
+  
     mochaOpts: {
-        ui: 'bdd'
-    }
+        ui: 'bdd',
+        timeout: 60000
+    } 
 }
 ```
 
