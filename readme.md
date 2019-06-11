@@ -126,6 +126,42 @@ describe("Login form", function(){
         setScore("pass");  	 
     });
 });
+
+//Helper to set the score
+function setScore(score) {
+
+    var result = { error: false, message: null }
+
+    if (browser.sessionId){
+        
+        request({
+            method: 'PUT',
+            uri: 'https://crossbrowsertesting.com/api/v3/selenium/' + browser.sessionId,
+            body: {'action': 'set_score', 'score': score },
+            json: true
+        },
+        function(error, response, body) {
+            if (error) {
+                result.error = true;
+                result.message = error;
+            }
+            else if (response.statusCode !== 200){
+                result.error = true;
+                result.message = body;
+            }
+            else{
+                result.error = false;
+                result.message = 'success';
+            }
+
+        })
+        .auth(process.env.CBT_USERNAME, process.env.CBT_AUTHKEY);
+    }
+    else{
+        result.error = true;
+        result.message = 'Session Id was not defined';
+    }
+}
 ```
 
 
