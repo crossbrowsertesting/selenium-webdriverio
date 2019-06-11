@@ -330,35 +330,19 @@ As you can see, we're now pointing the test at our hub rather than a local drive
 
 ## Using the Local Connection
 
-If you would like to test behind your firewall or access non-public sites, you can use our local connection tool. WebDriverIO allows for onPrepare and onComplete functions, which run once before any of your tests begin, and then after all of them are complete. Simply add the following block of code to your wdio.conf.js file (or clone this repo and uncomment it):
+If you would like to test behind your firewall or access non-public sites, you can use our local connection tool through our WebdriverIO service. Simply install our service by running the command:
 
-```javascript
-onPrepare: function (config, capabilities) {
-    console.log("Connecting local...");
-    return new Promise(function(resolve, reject){
-        cbt.start({'username': username,'authkey': authkey},function(err){
-            if(!err){
-                console.log('Successful local connection!');
-                resolve();
-            }else{
-                console.log('Failed local connection: ' + err.toString());
-                reject(err);
-            }
-        });
-    })
- },
+```bash
+npm install --save-dev @wdio/crossbrowsertesting-service
+```
 
-onComplete: function(exitCode, config, capabilities) {
-    return new Promise(function(resolve, reject){
-        cbt.stop(function(err){
-            if(!err){
-                console.log('Local connection sucessfully closed');
-                resolve();
-            }else{
-                console.log('Failed to close local connection: ' + err.toString());
-                reject(err);
-            }
-        });
-    })
- }
+Then add the following to your wdio.conf.js file :
+
+```js
+export.config = {
+  // ...
+  services: ['crossbrowsertesting'],
+  cbtTunnel: true,
+  // ...
+};
 ```
