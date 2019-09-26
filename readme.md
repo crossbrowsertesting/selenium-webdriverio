@@ -89,7 +89,7 @@ exports.config = {
 }
 ```
 
-All that's left to do now is add your tests! The directory we specified in the config file is `/test/specs`, so place your tests there. Here is the sample test we'll use:
+All that's left to do now is add your tests! The directory we specified in the config file is `/test/specs`, so place your tests there. Here is the sample test we'll use saved in a file named login.js:
 
 ```javascript
 const request = require('request');
@@ -200,7 +200,10 @@ exports.config = {
   
 }
 ```
-
+Run your test using the command:
+```javascript
+./node_modules/.bin/wdio
+```
 As you can see, we're now pointing the test at our hub rather than a local driver instance. 
 
 ## Using the Local Connection
