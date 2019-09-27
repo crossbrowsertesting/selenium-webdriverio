@@ -20,7 +20,7 @@ exports.config = {
 
     capabilities: [{
         maxInstances: 5,
-
+        name: 'WDIO Selenium Test Example', 
         platform: 'Windows',
         browserName: 'firefox',
         record_video: 'true',
