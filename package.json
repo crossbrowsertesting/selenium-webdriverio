@@ -1,0 +1,33 @@
+{
+  "name": "selenium-webdriverio",
+  "version": "1.0.0",
+  "description": "* [Simple Test with Mocha](#test-with-mocha) * [Converting Existing Test Suites](#converting-existing-test-suites) * [Using the Local Connection](#using-the-local-connection)",
+  "main": "wdio.conf.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/wdio run wdio.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crossbrowsertesting/selenium-webdriverio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crossbrowsertesting/selenium-webdriverio/issues"
+  },
+  "homepage": "https://github.com/crossbrowsertesting/selenium-webdriverio#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@wdio/cli": "^5.16.15",
+    "@wdio/crossbrowsertesting-service": "^5.16.10",
+    "@wdio/local-runner": "^5.16.15",
+    "@wdio/mocha-framework": "^5.16.15",
+    "@wdio/spec-reporter": "^5.16.11",
+    "@wdio/sync": "^5.16.15",
+    "request": "^2.88.0"
+  }
+}

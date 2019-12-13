@@ -1,0 +1,399 @@
+JSchneiderMbpR2-1088:crossbrowsertesting-webdriver-safari-example jere7054$ echo "10.16.1" > .nvmrc
+JSchneiderMbpR2-1088:crossbrowsertesting-webdriver-safari-example jere7054$ nvm use
+Found '/Users/jere7054/crossbrowsertesting-webdriver-safari-example/.nvmrc' with version <10.16.1>
+Now using node v10.16.1 (npm v6.9.0)
+JSchneiderMbpR2-1088:crossbrowsertesting-webdriver-safari-example jere7054$ node --version
+v10.16.1
+JSchneiderMbpR2-1088:crossbrowsertesting-webdriver-safari-example jere7054$ git clone git@github.com:crossbrowsertesting/selenium-webdriverio.git
+Cloning into 'selenium-webdriverio'...
+remote: Enumerating objects: 31, done.
+remote: Counting objects: 100% (31/31), done.
+remote: Compressing objects: 100% (25/25), done.
+remote: Total 74 (delta 8), reused 6 (delta 2), pack-reused 43
+Receiving objects: 100% (74/74), 27.13 KiB | 370.00 KiB/s, done.
+Resolving deltas: 100% (19/19), done.
+JSchneiderMbpR2-1088:crossbrowsertesting-webdriver-safari-example jere7054$ ls
+selenium-webdriverio
+JSchneiderMbpR2-1088:crossbrowsertesting-webdriver-safari-example jere7054$ cd selenium-webdriverio/
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ ls
+readme.md	test		wdio.conf.js
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ npm init -y
+Wrote to /Users/jere7054/crossbrowsertesting-webdriver-safari-example/selenium-webdriverio/package.json:
+
+{
+  "name": "selenium-webdriverio",
+  "version": "1.0.0",
+  "description": "* [Simple Test with Mocha](#test-with-mocha) * [Converting Existing Test Suites](#converting-existing-test-suites) * [Using the Local Connection](#using-the-local-connection)",
+  "main": "wdio.conf.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crossbrowsertesting/selenium-webdriverio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crossbrowsertesting/selenium-webdriverio/issues"
+  },
+  "homepage": "https://github.com/crossbrowsertesting/selenium-webdriverio#readme"
+}
+
+
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ npm install --seave-dev @wdio/cli
+
+> ejs@3.0.1 postinstall /Users/jere7054/crossbrowsertesting-webdriver-safari-example/selenium-webdriverio/node_modules/ejs
+> node ./postinstall.js
+
+Thank you for installing EJS: built with the Jake JavaScript build tool (https://jakejs.com/)
+
+npm notice created a lockfile as package-lock.json. You should commit this file.
++ @wdio/cli@5.16.15
+added 259 packages from 163 contributors and audited 609 packages in 12.936s
+found 0 vulnerabilities
+
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ npm install --save-dev @wdio/cli
+npm notice save @wdio/cli is being moved from dependencies to devDependencies
++ @wdio/cli@5.16.15
+updated 1 package and audited 609 packages in 9.391s
+found 0 vulnerabilities
+    //
+    // =================
+    // Service Providers
+    // =================
+    // WebdriverIO supports Sauce Labs, Browserstack, and Testing Bot (other cloud providers
+    // should work too though). These services define specific user and key (or access key)
+    // values you need to put in here in order to connect to these services.
+    //
+    user: process.env.CBT_USERNAME,
+    key: process.env.CBT_AUTHKEY,
+    //
+    // If you run your tests on SauceLabs you can specify the region you want to run your tests
+    // in via the `region` property. Available short handles for regions are `us` (default) and `eu`.
+    // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
+    // If you don't provide the region it will default for the `us`
+
+    //
+    // ==================
+    // Specify Test Files
+    // ==================
+    // Define which test specs should run. The pattern is relative to the directory
+    // from which `wdio` was called. Notice that, if you are calling `wdio` from an
+    // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
+    // directory is where your package.json resides, so `wdio` will be called from there.
+    //
+    specs: [
+        './test/specs/**/*.js'
+    ],
+    // Patterns to exclude.
+    exclude: [
+        // 'path/to/excluded/files'
+    ],
+    //
+    // ============
+    // Capabilities
+    // ============
+    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
+    // time. Depending on the number of capabilities, WebdriverIO launches several test
+    // sessions. Within your capabilities you can overwrite the spec and exclude options in
+    // order to group specific specs to a specific capability.
+    //
+    // First, you can define how many instances should be started at the same time. Let's
+    // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
+    // set maxInstances to 1; wdio will spawn 3 processes. Therefore, if you have 10 spec
+    // files and you set maxInstances to 10, all spec files will get tested at the same time
+    // and 30 processes will get spawned. The property handles how many capabilities
+    // from the same test should run tests.
+    //
+    maxInstances: 10,
+    //
+    // If you have trouble getting all important capabilities together, check out the
+    // Sauce Labs platform configurator - a great tool to configure your capabilities:
+    // https://docs.saucelabs.com/reference/platforms-configurator
+    //
+    capabilities: [{
+        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+        // grid with only 5 firefox instances available you can make sure that not more than
+        // 5 instances get started at a time.
+        maxInstances: 5,
+        //
+        browserName: 'firefox',
+        // If outputDir is provided WebdriverIO can capture driver session logs
+        // it is possible to configure which logTypes to include/exclude.
+        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
+        // excludeDriverLogs: ['bugreport', 'server'],
+    }],
+    //
+    // ===================
+    // Test Configurations
+    // ===================
+    // Define all options that are relevant for the WebdriverIO instance here
+    //
+    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    logLevel: 'info',
+    //
+    // Set specific log levels per logger
+    // loggers:
+/capab
+    // your test setup with almost no effort. Unlike plugins, they don't add new
+    // commands. Instead, they hook themselves up into the test process.
+    services: ['crossbrowsertesting'],
+
+    // Framework you want to run your specs with.
+    // The following are supported: Mocha, Jasmine, and Cucumber
+    // see also: https://webdriver.io/docs/frameworks.html
+    //
+    // Make sure you have the wdio adapter package for the specific framework installed
+    // before running any tests.
+    framework: 'mocha',
+    //
+    // The number of times to retry the entire specfile when it fails as a whole
+    // specFileRetries: 1,
+    //
+    // Test reporter for stdout.
+    // The only one supported by default is 'dot'
+    // see also: https://webdriver.io/docs/dot-reporter.html
+    reporters: ['spec'],
+
+    //
+    // Options to be passed to Mocha.
+    // See the full list at http://mochajs.org/
+    mochaOpts: {
+        ui: 'bdd',
+        timeout: 60000
+    },
+    //
+    // =====
+    // Hooks
+    // =====
+    // WebdriverIO provides several hooks you can use to interfere with the test process in order to enhance
+    // it and to build services around it. You can either apply a single function or an array of
+    // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
+    // resolved to continue.
+    /**
+     * Gets executed once before all workers get launched.
+     * @param {Object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     */
+    // onPrepare: function (config, capabilities) {
+    // },
+    /**
+     * Gets executed just before initialising the webdriver session and test framework. It allows you
+     * to manipulate configurations depending on the capability or spec.
+     * @param {Object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that are to be run
+     */
+    // beforeSession: function (config, capabilities, specs) {
+    // },
+    /**
+     * Gets executed before test execution begins. At this point you can access to all global
+     * variables like `browser`. It is the perfect place to define custom commands.
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that are to be run
+     */
+    // before: function (capabilities, specs) {
+    // },
+    /**
+     * Runs before a WebdriverIO command gets executed.
+     * @param {String} commandName hook command name
+     * @param {Array} args arguments that command would receive
+     */
+    // beforeCommand: function (commandName, args) {
+    // },
+    /**
+     * Hook that gets executed before the suite starts
+     * @param {Object} suite suite details
+     */
+    // beforeSuite: function (suite) {
+    // },
+    /**
+     * Function to be executed before a test (in Mocha/Jasmine) starts.
+     */
+    // beforeTest: function (test, context) {
+    // },
+/capab
+     */
+
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ npm install --save-dev request
++ request@2.88.0
+updated 1 package and audited 672 packages in 3.889s
+found 0 vulnerabilities
+
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ npm install --save-dev @wdio/mocha-framework
+
++ @wdio/mocha-framework@5.16.15
+added 75 packages from 515 contributors and audited 885 packages in 8.72s
+found 0 vulnerabilities
+
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ npm install --save-dev @wdio/crossbrowsertesting-service
+npm WARN deprecated circular-json@0.5.9: CircularJSON is in maintenance only, flatted is its successor.
++ @wdio/crossbrowsertesting-service@5.16.10
+added 163 packages from 130 contributors and audited 1809 packages in 21.407s
+found 2 vulnerabilities (1 low, 1 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ ./node_modules/.bin/wdio config
+
+=========================
+WDIO Configuration Helper
+=========================
+
+? Where should your tests be launched? local
+? Where is your automation backend located? In the cloud using Browserstack or Testingbot or a different service
+? What is the host address of that cloud service? hub.crossbrowsertesting.com
+? What is the port on which that service is running? 80
+? Environment variable for username CBT_USERNAME
+? Environment variable for access key CBT_AUTHKEY
+? Which framework do you want to use? mocha
+? Do you want to run WebdriverIO commands synchronous or asynchronous? sync
+? Where are your test specs located? ./test/specs/**/*.js
+? Which reporter do you want to use? spec
+? Do you want to add a service to your test setup? crossbrowsertesting
+? What is the base url? http://localhost
+
+Installing wdio packages:
+- @wdio/local-runner
+- @wdio/mocha-framework
+- @wdio/spec-reporter
+- @wdio/crossbrowsertesting-service
+- @wdio/sync
+npm WARN deprecated circular-json@0.5.9: CircularJSON is in maintenance only, flatted is its successor.
+
+> fibers_node_v8@3.1.5 preinstall /Users/jere7054/crossbrowsertesting-webdriver-safari-example/selenium-webdriverio/node_modules/fibers_node_v8
+> node preinstall.js
+
+
+> fibers@4.0.2 install /Users/jere7054/crossbrowsertesting-webdriver-safari-example/selenium-webdriverio/node_modules/fibers
+> node build.js || nodejs build.js
+
+`darwin-x64-64` exists; testing
+Binary is fine; exiting
+
+> fibers_node_v8@3.1.5 install /Users/jere7054/crossbrowsertesting-webdriver-safari-example/selenium-webdriverio/node_modules/fibers_node_v8
+> node build.js
+
+ignore install
++ @wdio/crossbrowsertesting-service@5.16.10
++ @wdio/mocha-framework@5.16.15
++ @wdio/spec-reporter@5.16.11
++ @wdio/sync@5.16.15
++ @wdio/local-runner@5.16.15
+added 27 packages from 33 contributors, removed 12 packages, updated 5 packages and audited 2305 packages in 11.155s
+found 2 vulnerabilities (1 low, 1 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+
+Packages installed successfully, creating configuration file...
+
+Configuration file was created successfully!
+To run your tests, execute:
+$ wdio run wdio.conf.js
+
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ cp wdio.conf.js wdio.conf.js-AS_CREATED_BY_WDIO_CONFIG
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ vi wdio.conf.js
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ diff wdio.conf.js-AS_CREATED_BY_WDIO_CONFIG wdio.conf.js
+23c23
+<     path: '',
+---
+>     // path: '',
+84c84,89
+<         browserName: 'firefox',
+---
+>         name: 'Basic wdio test targeting Safari',
+>         platform: 'Mac OSX 10.15',
+>         browserName: 'Safari',
+>         version: 13,
+>         screenResolution: '1366x768',
+>         record_video: 'true'
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ env | grep CBT | cut -c 1-15
+CBT_AUTHKEY=u34
+CBT_USERNAME=js
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ ./node_modules/.bin/wdio run wdio.conf.js
+
+Execution of 1 spec files started at 2019-12-13T18:52:57.658Z
+
+2019-12-13T18:52:59.568Z INFO @wdio/cli:launcher: Run onPrepare hook
+2019-12-13T18:52:59.575Z INFO @wdio/local-runner: Start worker 0-0 with arg: run,wdio.conf.js
+[0-0] 2019-12-13T18:53:00.136Z INFO @wdio/local-runner: Run worker command: run
+[0-0] RUNNING in Safari - /test/specs/login.js
+[0-0] 2019-12-13T18:53:01.058Z INFO webdriverio: Initiate new session using the webdriver protocol
+[0-0] 2019-12-13T18:53:01.062Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session
+[0-0] 2019-12-13T18:53:01.062Z INFO webdriver: DATA { capabilities:
+   { alwaysMatch:
+      { name: 'Basic wdio test targeting Safari',
+        platform: 'Mac OSX 10.15',
+        browserName: 'Safari',
+        version: 13,
+        screenResolution: '1366x768',
+        record_video: 'true' },
+     firstMatch: [ {} ] },
+  desiredCapabilities:
+   { name: 'Basic wdio test targeting Safari',
+     platform: 'Mac OSX 10.15',
+     browserName: 'Safari',
+     version: 13,
+     screenResolution: '1366x768',
+     record_video: 'true' } }
+[0-0] 2019-12-13T18:53:10.503Z INFO webdriver: COMMAND navigateTo("http://crossbrowsertesting.github.io/login-form.html")
+[0-0] 2019-12-13T18:53:10.503Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/url
+[0-0] 2019-12-13T18:53:10.503Z INFO webdriver: DATA { url: 'http://crossbrowsertesting.github.io/login-form.html' }
+[0-0] 2019-12-13T18:53:11.269Z INFO webdriver: COMMAND findElement("css selector", "#username")
+[0-0] 2019-12-13T18:53:11.269Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element
+[0-0] 2019-12-13T18:53:11.269Z INFO webdriver: DATA { using: 'css selector', value: '#username' }
+[0-0] 2019-12-13T18:53:11.653Z INFO webdriver: RESULT { 'element-6066-11e4-a52e-4f735466cecf': 'node-8685DD72-0BF2-4358-98E6-C1A0F3C861D0' }
+[0-0] 2019-12-13T18:53:11.660Z INFO webdriver: COMMAND elementClick("node-8685DD72-0BF2-4358-98E6-C1A0F3C861D0")
+[0-0] 2019-12-13T18:53:11.661Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element/node-8685DD72-0BF2-4358-98E6-C1A0F3C861D0/click
+[0-0] 2019-12-13T18:53:12.070Z INFO webdriver: COMMAND elementClear("node-8685DD72-0BF2-4358-98E6-C1A0F3C861D0")
+[0-0] 2019-12-13T18:53:12.071Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element/node-8685DD72-0BF2-4358-98E6-C1A0F3C861D0/clear
+[0-0] 2019-12-13T18:53:12.286Z INFO webdriver: COMMAND elementSendKeys("node-8685DD72-0BF2-4358-98E6-C1A0F3C861D0", "username")
+[0-0] 2019-12-13T18:53:12.287Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element/node-8685DD72-0BF2-4358-98E6-C1A0F3C861D0/value
+[0-0] 2019-12-13T18:53:12.287Z INFO webdriver: DATA { text: 'username' }
+[0-0] 2019-12-13T18:53:12.638Z INFO webdriver: COMMAND findElement("css selector", "#password")
+[0-0] 2019-12-13T18:53:12.639Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element
+[0-0] 2019-12-13T18:53:12.639Z INFO webdriver: DATA { using: 'css selector', value: '#password' }
+[0-0] 2019-12-13T18:53:12.753Z INFO webdriver: RESULT { 'element-6066-11e4-a52e-4f735466cecf': 'node-49EA76D4-6D86-4904-B51B-F29038DC8558' }
+[0-0] 2019-12-13T18:53:12.757Z INFO webdriver: COMMAND elementClick("node-49EA76D4-6D86-4904-B51B-F29038DC8558")
+[0-0] 2019-12-13T18:53:12.758Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element/node-49EA76D4-6D86-4904-B51B-F29038DC8558/click
+[0-0] 2019-12-13T18:53:13.173Z INFO webdriver: COMMAND elementClear("node-49EA76D4-6D86-4904-B51B-F29038DC8558")
+[0-0] 2019-12-13T18:53:13.173Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element/node-49EA76D4-6D86-4904-B51B-F29038DC8558/clear
+[0-0] 2019-12-13T18:53:13.291Z INFO webdriver: COMMAND elementSendKeys("node-49EA76D4-6D86-4904-B51B-F29038DC8558", "password")
+[0-0] 2019-12-13T18:53:13.292Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element/node-49EA76D4-6D86-4904-B51B-F29038DC8558/value
+[0-0] 2019-12-13T18:53:13.292Z INFO webdriver: DATA { text: 'password' }
+[0-0] 2019-12-13T18:53:13.637Z INFO webdriver: COMMAND findElement("css selector", "div.form-actions>button")
+[0-0] 2019-12-13T18:53:13.637Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element
+[0-0] 2019-12-13T18:53:13.637Z INFO webdriver: DATA { using: 'css selector', value: 'div.form-actions>button' }
+[0-0] 2019-12-13T18:53:13.750Z INFO webdriver: RESULT { 'element-6066-11e4-a52e-4f735466cecf': 'node-2A106BAA-3526-4EBC-9B96-54D55BE9516D' }
+[0-0] 2019-12-13T18:53:13.753Z INFO webdriver: COMMAND elementClick("node-2A106BAA-3526-4EBC-9B96-54D55BE9516D")
+[0-0] 2019-12-13T18:53:13.753Z INFO webdriver: [POST] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/element/node-2A106BAA-3526-4EBC-9B96-54D55BE9516D/click
+[0-0] 2019-12-13T18:53:13.897Z INFO webdriver: COMMAND getTitle()
+[0-0] 2019-12-13T18:53:13.897Z INFO webdriver: [GET] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45/title
+[0-0] 2019-12-13T18:53:14.014Z INFO webdriver: RESULT Login Form - CrossBrowserTesting.com
+[0-0] 2019-12-13T18:53:14.035Z INFO @wdio/crossbrowsertesting-service: Update job with sessionId 54BBB164-E550-4FEB-853E-08454B3E3F45, status: passing
+[0-0] 2019-12-13T18:53:14.332Z INFO webdriver: COMMAND deleteSession()
+[0-0] 2019-12-13T18:53:14.332Z INFO webdriver: [DELETE] http://hub.crossbrowsertesting.com:80/wd/hub/session/54BBB164-E550-4FEB-853E-08454B3E3F45
+[0-0] PASSED in Safari - /test/specs/login.js
+2019-12-13T18:53:14.702Z INFO @wdio/cli:launcher: Run onComplete hook
+
+ "spec" Reporter:
+------------------------------------------------------------------
+[Safari  macOS #0-0] Spec: /Users/jere7054/crossbrowsertesting-webdriver-safari-example/selenium-webdriverio/test/specs/login.js
+[Safari  macOS #0-0] Running: Safari on macOS
+[Safari  macOS #0-0] Session ID: 54BBB164-E550-4FEB-853E-08454B3E3F45
+[Safari  macOS #0-0]
+[Safari  macOS #0-0] Login form
+[Safari  macOS #0-0]    ✓ should have the right title
+[Safari  macOS #0-0]
+[Safari  macOS #0-0] 1 passing (4.1s)
+
+
+Spec Files:	 1 passed, 1 total (100% completed) in 00:00:17
+
+2019-12-13T18:53:14.703Z INFO @wdio/local-runner: Shutting down spawned worker
+2019-12-13T18:53:14.958Z INFO @wdio/local-runner: Waiting for 0 to shut down gracefully
+2019-12-13T18:53:14.959Z INFO @wdio/local-runner: shutting down
+JSchneiderMbpR2-1088:selenium-webdriverio jere7054$ 
