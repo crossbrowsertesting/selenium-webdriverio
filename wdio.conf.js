@@ -3,6 +3,7 @@ exports.config = {
 
     hostname: 'hub.crossbrowsertesting.com',
     port: 80,
+    path: '/wd/hub',
 
     services: ['crossbrowsertesting'],
     user: process.env.CBT_USERNAME,
