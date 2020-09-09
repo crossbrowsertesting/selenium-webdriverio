@@ -42,6 +42,7 @@ exports.config = {
    
     hostname: 'hub.crossbrowsertesting.com',
     port: 80,
+    path: '/wd/hub',
    
     services: ['crossbrowsertesting'],
     user: process.env.CBT_USERNAME,
@@ -186,6 +187,7 @@ exports.config = {
   runner: 'local',
   hostname: "hub.crossbrowsertesting.com",
   port: 80,
+  path: '/wd/hub',
   user: 'you@yourdomain.com',		// the email address associated with your CBT account
   key: 'yourauthkey',      					// find this under the "Manage Account page of our app"
   
