@@ -17,11 +17,11 @@ First, create a folder for your test. From inside that folder, run the following
 ```
 npm init -y
 npm install --save-dev @wdio/cli
-npm install --save-dev request
 npm install --save-dev @wdio/local-runner
 npm install --save-dev @wdio/spec-reporter
+npm install --save-dev request
 ```
-`npm init -y` starts your project, `npm install --save-dev @wdio/cli` installs WebDriverIO into your project, `npm install --save-dev request` installs the request module, `npm install --save-dev @wdio/local-runner` allows local running of tests and `npm install --save-dev @wdio/spec-reporter` formats test output in spec style.
+`npm init -y` starts your project, `npm install --save-dev @wdio/cli` installs WebDriverIO into your project, `npm install --save-dev @wdio/local-runner` allows local running of tests, `npm install --save-dev @wdio/spec-reporter` formats test output in spec style and `npm install --save-dev request` installs the request module.
 
 ### Test with Mocha
 
