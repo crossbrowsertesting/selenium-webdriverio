@@ -21,11 +21,16 @@ exports.config = {
 
     capabilities: [{
         maxInstances: 5,
-        name: 'WDIO Selenium Test Example', 
-        platform: 'Windows',
+        platformName: 'Windows 10',
         browserName: 'firefox',
-        record_video: 'true',
-        record_network: 'false'
+        browserVersion: 90,
+        'cbt:options': {
+            'name': 'WDIO Selenium Test Example',
+            'build': '1.1',
+            'screenResolution': '1366x768',
+            'record_video': 'true',
+            'record_network': 'false',
+        }
     }],
 
     logLevel: 'info',
@@ -43,7 +48,6 @@ exports.config = {
     framework: 'mocha',
 
     reporters: ['spec'],
-
 
     mochaOpts: {
         ui: 'bdd',
